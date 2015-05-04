@@ -27,6 +27,8 @@ class Solution:
                     return num
 
     def majorityElement1(self, nums):
+        # major element must be in the middle index
+        # directly return nums[n/2]
         sort_nums = sorted(nums)
         count = 1
         for i in xrange(1, len(sort_nums)):
