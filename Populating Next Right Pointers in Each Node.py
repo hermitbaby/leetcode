@@ -89,3 +89,39 @@ class Solution:
 #       2 -> 3 -> NULL
 #      / \    \
 #     4-> 5 -> 7 -> NULL
+
+
+    def connect(self, root):
+        fatherLayerCurrent = root
+        sonLayerHead = None
+        sonLayerCurrent = None
+
+        # Travel layer by layer as BFS travesal.
+        while fatherLayerCurrent != None:
+            # Travel inside a layer from left to right
+            while fatherLayerCurrent != None:
+                # Try to access the left son if there is
+                if fatherLayerCurrent.left != None:
+                    if sonLayerHead == None:
+                        sonLayerHead = fatherLayerCurrent.left
+                        sonLayerCurrent = sonLayerHead
+                    else:
+                        sonLayerCurrent.next = fatherLayerCurrent.left
+                        sonLayerCurrent = sonLayerCurrent.next
+
+                # Try to access the right son if there is
+                if fatherLayerCurrent.right != None:
+                    if sonLayerHead == None:
+                        sonLayerHead = fatherLayerCurrent.right
+                        sonLayerCurrent = sonLayerHead
+                    else:
+                        sonLayerCurrent.next = fatherLayerCurrent.right
+                        sonLayerCurrent = sonLayerCurrent.next
+
+                fatherLayerCurrent = fatherLayerCurrent.next
+
+            # Prepare to move down to the next layer.
+            fatherLayerCurrent = sonLayerHead
+            sonLayerHead =None
+
+        return

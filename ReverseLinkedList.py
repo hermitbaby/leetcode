@@ -57,7 +57,7 @@ class Solution:
 #
 # Note:
 # Given m, n satisfy the following condition:
-# 1 ≤ m ≤ n ≤ length of list.
+# 1 <= m<= n <= length of list.
 
 
 
@@ -65,7 +65,7 @@ class Solution:
     def reverseBetween(self, head, m, n):
         """
         !! need more intuitive think on the reverseZone part
-        
+
         1 if m == n, no need to do
         2 need dummy node to find head this time
             the new head will change, according to m,n
