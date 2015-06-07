@@ -15,4 +15,23 @@ class Solution:
     # @param {string} s
     # @return {string[]}
     def findRepeatedDnaSequences(self, s):
-        
+        dict = {}
+        result = []
+
+        for i in xrange(len(s)):
+            # end index
+            endIdx = i + 10
+            if endIdx <= len(s):
+                substr = s[i:i+10]
+                print substr
+                dict[substr] = dict.get(substr, 0) + 1
+
+        for k in dict:
+            if dict[k] > 1:
+                result.append(k)
+
+        return result
+
+
+s = Solution()
+print s.findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")
