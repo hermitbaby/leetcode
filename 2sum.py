@@ -1,3 +1,4 @@
+
 # The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
 #
 # You may assume that each input would have exactly one solution.
@@ -41,8 +42,19 @@ class Solution:
         return []
 
 
+    def twoSum2(self, nums, target):
+        # elegant short answer
+        dict = {}
+        for i in xrange(len(nums)):
+            x = nums[i]
+            if target-x in dict:
+                return (dict[target-x]+1, i+1)
+            dict[x] = i
+            print dict
+
+
 
 s= Solution()
-print s.twoSum(nums=[2, 7, 11, 15], target=22)
-print s.twoSum(nums=[0, 4, 3, 0], target=0)
+print s.twoSum2(nums=[2, 15, 11, 7], target=22)
+print s.twoSum2(nums=[0, 4, 3, 0], target=0)
 # 22

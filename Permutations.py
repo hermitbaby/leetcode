@@ -28,7 +28,7 @@ class Solution:
         2
         """
         def dfs(node, rest_list, res, counter):
-            # print 'node=', node, 'rest_list=', rest_list, 'res=', res, counter
+            print "\t\t" * counter, 'depth=', counter, '|node=', node, '| rest_list=', rest_list, '| res=', res
             if rest_list == []:
                 res.append(node)
             else:
@@ -36,7 +36,24 @@ class Solution:
                     # print 'i=', i
                     # rest_list[:i] + rest_list[i+1:] means
                     #    in rest_list, excludes rest_list[i]
-                    dfs(node+[rest_list[i]], rest_list[:i] + rest_list[i+1:], res, counter+1)
+
+                    # new_node_list = node+[rest_list[i]]
+                    # print 'error: i', i, rest_list
+                    # node.append(rest_list[i])
+                    new_node_list = []
+                    new_node_list[:] = node[:]
+                    new_node_list.append(rest_list[i])
+
+                    # new_rest_list = rest_list[:i] + rest_list[i+1:]
+                    # rest_list.pop(i)
+                    # print new_rest_list
+                    new_rest_list = []
+                    # parameter name problem
+                    # print 'should change:', rest_list
+                    new_rest_list[:] = rest_list[:]
+                    new_rest_list.pop(i)
+                    # node+[rest_list[i]], rest_list[:i] + rest_list[i+1:]
+                    dfs(new_node_list, new_rest_list, res, counter+1)
 
         # mutable object(list) is passed by ref, in python
         # int is passed by value
@@ -84,10 +101,10 @@ num = []
 # import sys
 # max recursion level is 1000
 # print sys.getrecursionlimit()
-# for i in xrange(1, 5):
-#     num.append(i)
-# print s.permute2(num)
-print (s.permuteUnique([1,1,2,3]))
-print (s.permute2([1,1,2,3]))
+for i in xrange(1, 4):
+    num.append(i)
+print s.permute2(num)
+# print (s.permuteUnique([1,1,2,3]))
+# print (s.permute2([1, 2, 3]))
 
 

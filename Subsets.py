@@ -24,7 +24,7 @@ class Solution:
     # @return {integer[][]}
     def subsets(self, nums):
         def dfs(depth, start, valuelist):
-            print 'depth:', depth, 'start:', start, 'valuelist', valuelist
+            print '\t\t' * depth, 'start:', start, 'valuelist', valuelist, 'depth:', depth
             res.append(valuelist)
             # if depth == len(nums):
             #     return
@@ -60,4 +60,4 @@ class Solution:
 
 
 s = Solution()
-print s.subsets([1, 2, 3,4])
+print s.subsets([1, 2, 3])
