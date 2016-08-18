@@ -16,6 +16,10 @@ class Solution:
 
     alphabet_and_quote = map(chr, range(ord('a'), ord('z') + 1)) + ["'"]
 
+    alphabet_and_quote2 = list("etaoinshrdlcumwfgypbvkjxqz") + ["'"]
+
+    letter_prime_map = dict(zip(alphabet_and_quote2, primes[:len(alphabet_and_quote)]))
+
 
     def get_data_from_file(self):
         print os.path.getsize('anagrams_wordlist.txt')
@@ -74,12 +78,14 @@ class Solution:
 
         nums = []
         for s in sstr:
-            if s.lower() not in Solution.alphabet_and_quote:
+            if s.lower() not in Solution.letter_prime_map:
                 raise Exception(s.lower())
                 # print s.lower()
                 # return
-            num_idx = Solution.alphabet_and_quote.index(s.lower())
-            num = Solution.primes[num_idx]
+            # num_idx = Solution.alphabet_and_quote.index(s.lower())
+            # num = Solution.primes[num_idx]
+
+            num = Solution.letter_prime_map.get(s.lower())
             nums.append(num)
 
         # reduce(operator.mul, nums)
@@ -89,14 +95,16 @@ class Solution:
 
 
 s = Solution()
+# print s.letter_prime_map
 
 # word_list = s.anagrams2()
 data = s.get_data_from_file()
+
 start = timeit.default_timer()
 res2 = s.anagrams2(data)
 print len(res2)
-with open("anagrams_wordlist_res.txt", "w") as text_file:
-    text_file.write(str(res2))
+# with open("anagrams_wordlist_res.txt", "w") as text_file:
+#     text_file.write(str(res2))
 stop = timeit.default_timer()
 print stop - start
 
