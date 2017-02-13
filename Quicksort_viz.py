@@ -14,8 +14,8 @@ def quicksort(items):
         return lesser + [pivot] + greater
 
 # print quicksort( list("helloworld") )
-# print quicksort( [5, 1, 9, 7, 3, 0, 2] )
-# callgraph.render("pic/sort.svg")
+print quicksort( [5, 1, 9, 7, 3, 0, 2] )
+callgraph.render("pic/quick_sort.svg")
 
 
 @viz
@@ -59,4 +59,4 @@ def fib_itr2(n):
 
     return res[-1]
 
-print fib_itr2(7)
+# print fib_itr2(7)

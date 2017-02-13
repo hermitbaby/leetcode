@@ -16,15 +16,19 @@
 #   [1,2],
 #   []
 # ]
-
+# -*- coding: utf-8 -*-
+from rcviz import callgraph, viz
 
 
 class Solution:
     # @param {integer[]} nums
     # @return {integer[][]}
+
     def subsets(self, nums):
+
+
         def dfs(depth, start, valuelist):
-            print '\t\t' * depth, 'start:', start, 'valuelist', valuelist, 'depth:', depth
+            # print '\t\t' * depth, 'start:', start, 'valuelist', valuelist, 'depth:', depth
             res.append(valuelist)
             # if depth == len(nums):
             #     return
@@ -35,6 +39,7 @@ class Solution:
         nums.sort()
         res = []
         dfs(0, 0, [])
+
         return res
 
 
@@ -59,5 +64,31 @@ class Solution:
 
 
 
-s = Solution()
-print s.subsets([1, 2, 3])
+# s = Solution()
+# print s.subsets([1, 2, 3])
+
+
+def subsets(nums):
+
+    nums.sort()
+    res = []
+    dfs(0, 0, [])
+
+    return res
+
+res = []
+nums = [1, 2, 3]
+
+@viz
+def dfs(start, valuelist):
+
+    res.append(valuelist)
+    dfs.track(start=start)
+    # if depth == len(nums):
+    #     return
+
+    for i in range(start, len(nums)):
+        dfs( i + 1, valuelist + [nums[i]])
+
+dfs(0, [])
+callgraph.render("pic/subset.svg")

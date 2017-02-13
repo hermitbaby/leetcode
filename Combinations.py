@@ -12,6 +12,8 @@
 #   [1,4],
 # ]
 
+# -*- coding: utf-8 -*-
+from rcviz import callgraph, viz
 
 class Solution:
     # @param {integer} n
@@ -19,21 +21,37 @@ class Solution:
     # @return {integer[][]}
     def combine(self, n, k):
         def dfs(start, valuelist, depth):
-            print '\t\t' * depth, 'depth', depth, '| start:', start, '| valuelist:', valuelist
+
             if depth == k:      # self.count == k:
                 ret.append(valuelist)
                 return
             for i in range(start, n + 1):
-                # self.count += 1
+
                 # Notice: valuelist is before [i]; old element + new element
                 dfs(i + 1, valuelist + [i], depth + 1)
-                # self.count -= 1
+
 
         ret = []
-        # self.count = 0
+
         dfs(1, [], 0)
         return ret
 
 
-s = Solution()
-print s.combine(4, 2)
+# s = Solution()
+# print s.combine(4, 2)
+
+
+n, k = 4, 2
+ret = []
+
+@viz
+def dfs(start, valuelist):
+
+    if len(valuelist) == k:
+        ret.append(valuelist)
+        return
+    for i in range(start, n + 1):
+        dfs(i + 1, valuelist + [i])
+
+dfs(1, [])
+callgraph.render("pic/combination.svg")
