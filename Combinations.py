@@ -13,12 +13,33 @@
 # ]
 
 # -*- coding: utf-8 -*-
-from rcviz import callgraph, viz
+# from rcviz import callgraph, viz
 
 class Solution:
     # @param {integer} n
     # @param {integer} k
     # @return {integer[][]}
+    def combine_070415(self, n, k):
+
+        res = []
+
+        def recurse(start, valuelist):
+            if len(valuelist) == k:
+                res.append(valuelist)
+                return
+
+            for idx in xrange(start, n+1):
+                recurse(idx+1, valuelist + [idx])
+
+        recurse(1, [])
+        return res
+
+
+
+
+
+
+
     def combine(self, n, k):
         def dfs(start, valuelist, depth):
 
@@ -37,10 +58,11 @@ class Solution:
         return ret
 
 
-# s = Solution()
-# print s.combine(4, 2)
+s = Solution()
+print s.combine(4, 3)
+print s.combine_070415(4, 3)
 
-
+"""
 n, k = 4, 2
 ret = []
 
@@ -55,3 +77,4 @@ def dfs(start, valuelist):
 
 dfs(1, [])
 callgraph.render("pic/combination.svg")
+"""

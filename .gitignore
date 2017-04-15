@@ -2,6 +2,7 @@
 *.pot
 *.py[co]
 .idea/
+*.zip
 
 mycode/
 venv/

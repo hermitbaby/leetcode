@@ -17,12 +17,59 @@
 #   []
 # ]
 # -*- coding: utf-8 -*-
-from rcviz import callgraph, viz
+# from rcviz import callgraph, viz
 
 
 class Solution:
     # @param {integer[]} nums
     # @return {integer[][]}
+
+    def subsets170415(self, nums):
+
+        res = []
+
+        """
+        def recurse(rest_elements, set_so_far, start):
+            if level == len(nums):
+                return
+
+            for idx in xrange(start, rest_elements):
+                rest = rest_elements[:idx] + rest_elements[idx+1:]
+                cur = rest_elements[idx]
+                recurse(rest, set_so_far + [cur], start+1)
+
+        """
+
+        def recurse(start, valuelist):
+            res.append(valuelist)
+
+            for idx in xrange(start, len(nums)):
+                recurse(idx + 1, valuelist + [nums[idx]])   # !! not start+1
+
+        recurse(0, [])
+
+        return res
+
+
+    def subsets_Dup170415(self, nums):
+
+        res = []
+
+        def recurse(start, valuelist):
+            if valuelist not in res:
+                res.append(valuelist)
+
+            for idx in xrange(start, len(nums)):
+                recurse(idx + 1, valuelist + [nums[idx]])   # !! not start+1
+
+        recurse(0, [])
+
+        return res
+
+
+
+
+
 
     def subsets(self, nums):
 
@@ -64,10 +111,14 @@ class Solution:
 
 
 
-# s = Solution()
+s = Solution()
+# print s.subsets170415([1, 2, 3])
 # print s.subsets([1, 2, 3])
 
+print s.subsets_Dup170415([1, 2, 2])
+print s.subsetsWithDup([1, 2, 2])
 
+"""
 def subsets(nums):
 
     nums.sort()
@@ -92,3 +143,5 @@ def dfs(start, valuelist):
 
 dfs(0, [])
 callgraph.render("pic/subset.svg")
+
+"""

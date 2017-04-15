@@ -17,6 +17,39 @@
 class Solution:
     # @param {string} digits
     # @return {string[]}
+
+    def letterCombinations170415(self, digits):
+        self.mapping = {
+            '0': ' ',
+            '1': '',
+            '2': 'abc',
+            '3': 'def',
+            '4': 'ghi',
+            '5': 'jkl',
+            '6': 'mno',
+            '7': 'pqrs',
+            '8': 'tuv',
+            '9': 'wxyz'
+        }
+
+        combinations = []
+
+        def recurse(rest_of_word, path_so_far):
+            if len(rest_of_word) == 0:
+                combinations.append(path_so_far)
+                return
+
+            first, rest = rest_of_word[0], rest_of_word[1:]
+            letters = self.mapping[first]
+
+            for letter in letters:
+                recurse(rest,  path_so_far + letter)
+
+        recurse(digits, "")
+        return combinations
+
+
+
     def letterCombinations0(self, digits):
         """
         Also can solve in recursive way
@@ -74,13 +107,13 @@ class Solution:
 
         def dfs(idx, string, result, mycount):
             # print string
-            print str(mycount)
+            # print str(mycount)
             mycount += 1
             if idx == length:
                 result.append(string)
                 return
             for letter in dict[digits[idx]]:
-                print 'dfs - ' + str(mycount) + '(',  str(idx), (string + letter), result, " )"
+                # print 'dfs - ' + str(mycount) + '(',  str(idx), (string + letter), result, " )"
                 dfs(idx+1, string + letter, result, mycount)
 
 
@@ -92,4 +125,5 @@ class Solution:
 
 
 s = Solution()
-print s.letterCombinations('345')
+print s.letterCombinations170415("234")
+print s.letterCombinations('234')

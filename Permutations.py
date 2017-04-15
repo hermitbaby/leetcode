@@ -5,13 +5,64 @@
 # [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
 
 # -*- coding: utf-8 -*-
-from rcviz import callgraph, viz
+# from rcviz import callgraph, viz
 
 
 class Solution:
     # @param {integer[]} nums
     # @return {integer[][]}
+    def permute_070415(self, nums):
+
+        res = []
+
+        def recurse(rest_nums, valuelist):
+            if len(valuelist) == len(nums):
+                res.append(valuelist)
+
+            for idx in range(len(rest_nums)):
+                rest = rest_nums[:idx] + rest_nums[idx+1:]
+                recurse(rest, valuelist+[rest_nums[idx]])
+
+        recurse(nums, [])
+        return res
+
+    def permuteDup_070415(self, nums):
+
+        res = []
+
+        def recurse(rest_nums, valuelist):
+            if len(valuelist) == len(nums) and valuelist not in res:
+                res.append(valuelist)
+
+            for idx in range(len(rest_nums)):
+                rest = rest_nums[:idx] + rest_nums[idx+1:]
+                recurse(rest, valuelist+[rest_nums[idx]])
+
+        recurse(nums, [])
+        return res
+
+    def permuteDup2_070415(self, nums):
+
+        res = []
+
+        def recurse(rest_nums, valuelist):
+            if len(valuelist) == len(nums):
+                res.append(valuelist)
+
+            pre = None
+            for idx in range(len(rest_nums)):
+                rest = rest_nums[:idx] + rest_nums[idx+1:]
+                if rest_nums[idx] != pre:
+                    recurse(rest, valuelist+[rest_nums[idx]])
+                    pre = rest_nums[idx]
+
+        recurse(nums, [])
+        return res
+
+
     def permute(self, nums):
+
+
         if len(nums) == 0: return []
         if len(nums) == 1: return [nums]
         res = []
@@ -95,8 +146,12 @@ class Solution:
 
 
 
-# s = Solution()
-# # s.permute([1, 2, 3])
+s = Solution()
+# print s.permute([1, 2, 3])
+print s.permute_070415([1, 2, 3])
+print s.permuteDup_070415([1, 1, 2])
+print s.permuteDup2_070415([1, 1, 2])
+
 # num = []
 # i = 10, Mem = 400MB
 # i = 11, Mem = 6GB
@@ -112,6 +167,7 @@ class Solution:
 # print (s.permute2([1, 2, 3]))
 
 
+"""
 
 res = []
 num = [1, 2, 3]
@@ -151,3 +207,5 @@ def dfs_uniq(node, rest_list):
 
 dfs_uniq([], num2)
 callgraph.render("pic/permutation_uniq.svg")
+
+"""
