@@ -55,6 +55,88 @@ With duplicated elements: check whether already in result before adding
 
 下一层递归的遍历值为`rest = rest[:idx] + rest[idx+1:]`, 即rest中去除当前值的新list
 
+## Consistent Hashing
+
+normal hashing: % node, when add/delete node, data move.
+
+* ring
+* virtual node
+
+## External sorting
+
+* external merge sort, 多路归并；
+* 归并排序，与`桶排序`之间，存在数学上的某种对偶性；
+
+## Hashing
+
+冲突解决策略: 
+
+* open hashing (也称 separate chainning)
+* closed hashing (也称 open addressing，办法有linear probing，二次probing)
+
+## Calculate percentile
+
+* 最近序数方法（The Nearest Rank method）
+* 在最近序数间线性插值的方法（The Linear Interpolation Between Closest Ranks method）
+  * C = 1/2
+  * C = 1
+  * C = 0
+  
+## Reverse linkedlist
+
+三部曲：
+
+* 保存。如果不保存下一个节点，翻转方向后，链表就断开了。
+* 翻转。
+* 移指针。先后次序有讲究，先移pre，再移cur；如果先移cur，链表又断开了，pre不知道往哪移动了。
+  
+## Add two linkedlists
+
+两个单链表，生成相加链表：
+
+* 转换成整数，相加完，再生成链表表示方法；问题是，链表可以很长，整数会溢出；
+* My: 转换成字符串，用字符串的每个位运算，最后转换成链表；
+* 用栈保存，弹栈则是从末位开始运算；需要栈空间；
+* 两个链表逆序，直接生成结果链表；
+
+## Two linkedlists intersection
+
+两个单链表相交的一些列问题：（一个有环，一个无环链表，不可能相交）
+
+
+1. 如何判断一个链表有环？如果有，返回第一个入环节点；
+	
+	* 快慢指针，是否相遇；如果相遇，快指针回到头节点，与慢指针再一起同速走，相遇点就是第一相交点。
+
+2. 如何判断两个无环链表，是否相交？相交则返回第一个节点；
+	
+	* 无环链表相交，尾部部分一定是相同的，因为不存在一个节点指向两个不同的后继节点；
+	* 第一次走的时候，并统计链表长度；
+	* 长链表先走 |len1-len2| 这么多步；然后两个链表一起走，第一个相同节点即是。
+	
+3. 如何判断两个有环链表，是否相交？相交返回第一个相交节点；
+
+	* 进环前相交，进环后相交，不想交；三种不同的拓扑结构
+	
+## Breadth first search
+
+```
+levelorder(root)
+  q ← empty queue
+  q.enqueue(root)
+  while (not q.isEmpty())
+    node ← q.dequeue()
+    visit(node)
+    if (node.left ≠ null)
+      q.enqueue(node.left)
+    if (node.right ≠ null)
+      q.enqueue(node.right)
+```
+ 
+
+
+
+
 
 
 
