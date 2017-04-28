@@ -133,6 +133,9 @@ levelorder(root)
       q.enqueue(node.right)
 ```
  
+## 一个组合数公式
+
+Cn,k = Cn-1,k + Cn-1, k-1
 
 
 
